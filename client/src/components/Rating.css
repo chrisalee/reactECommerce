@@ -1,0 +1,13 @@
+.card__rating {
+    display: flex;
+    color: #f8ce59;
+    text-shadow: 2px 2px 2px #000000;
+    font-size: 20px;
+}
+
+.card__reviews {
+    color: #000000;
+    margin-left: 10px;
+    font-size: 16px;
+    text-shadow: none;
+}

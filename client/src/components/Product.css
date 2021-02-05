@@ -1,0 +1,29 @@
+.product__card {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #aaaaaa;
+    background-color: #ffffff;
+}
+
+.product__image {
+    object-fit: contain;
+    width: 200px;
+    min-height: 280px;
+    border-radius: 0.5rem;
+}
+
+.product__cardName {
+    text-decoration: none;
+    color: #000000;
+}
+
+.product__cardName:hover {
+    text-decoration: none;
+    color: #e77b00;
+}
+
+.product__cardPrice {
+    font-size: 2rem;
+}
