@@ -9,28 +9,28 @@ import Header from "./components/Header";
 const App = () => {
   return (
     <BrowserRouter>
-    <div classNameName="app">
-      <div className="grid-container">
-        <header className="row">
-          <Header />
+      <div className="app">
+        <div className="grid-container">
+          <header className="row">
+            <Header />
           </header>
-
+    
           <main>
-
+    
             <Route path="/product/:id" component={ProductScreen}></Route>
             <Route path='/' component={HomeScreen} exact></Route>
-            
+              
           </main>
-
+    
           <footer>
             <Footer />
           </footer>
-          
-          
+            
+            
         </div>
       </div>
 
-      </BrowserRouter>
+    </BrowserRouter>
   );
 };
 
