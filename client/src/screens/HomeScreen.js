@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './HomeScreen.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Product from '../components/Product';
 import Loading from '../components/Loading';
@@ -13,10 +14,10 @@ const HomeScreen = () => {
 
   useEffect(() => {
       dispatch(listProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
-      <div>
+      <div className='homeScreen'>
         {loading ? <Loading /> : error ? <MessageBox varient='danger'>{error}</MessageBox> :
           <div className="row center">
             {
