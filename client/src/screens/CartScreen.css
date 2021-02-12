@@ -1,0 +1,11 @@
+.input, select, textarea, .button {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-image: linear-gradient(to right, #f83600 55%, #f99523 100%);
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    margin-top: 15px;
+    font-size: 1.6rem;
+    font-family: Helvetica, sans-serif;  
+}

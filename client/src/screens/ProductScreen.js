@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductScreen.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,14 +8,21 @@ import Rating from "../components/Rating";
 import { detailsProduct } from "../actions/productActions";
 
 const ProductScreen = (props) => {
+
   const dispatch = useDispatch();
   const productId = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
     dispatch(detailsProduct(productId));
   }, [dispatch, productId]);
+
+  const addToCartHandler = () => {
+    props.history.push(`/cart/${productId}?qty=${quantity}`)
+  };
 
   return (
     <div>
@@ -78,9 +85,31 @@ const ProductScreen = (props) => {
                     </div>
                   </li>
                   <li>
-                    <button className="productScreen__button">
-                      Add to Cart
-                    </button>
+                    {
+                      product.countInStock > 0 && (
+                        <>
+                          <li>
+                            <div className="row">
+                              <div className="label">Qty</div>
+                              <div className="label__select">
+                                <select value={quantity} onChange={event => setQuantity(event.target.value)}>
+                                  {
+                                    [...Array(product.countInStock).keys()].map(qty => (
+                                      <option key={qty + 1} value={qty + 1}>{qty + 1}</option>
+                                    ))
+                                  }
+                                </select>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <button className="productScreen__button" onClick={addToCartHandler}>
+                              Add to Cart
+                            </button>
+                          </li>
+                        </>
+                      )
+                    }
                   </li>
                 </ul>
               </div>
