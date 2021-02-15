@@ -4,9 +4,14 @@ import { Icon } from '@iconify/react';
 import shoppingCartSign from '@iconify-icons/el/shopping-cart-sign';
 import loginOutlined from '@iconify-icons/ant-design/login-outlined';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
+
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+
     return (
         <div className='header'>
           <div className="row">
@@ -26,7 +31,14 @@ const Header = () => {
               <button>Search</button>
             </div>
             <div>
-              <Link to="/cart"><Icon className='shopping__icon' icon={shoppingCartSign} /></Link>
+              <Link to="/cart">
+                <Icon className='shopping__icon' icon={shoppingCartSign} />
+                {cartItems.length > 0 && (
+                  <span className='header__numberOfItems'>
+                    {cartItems.length}
+                  </span>
+                )}
+              </Link>
               <Link to="/signin"><Icon className='signin__icon' icon={loginOutlined} /></Link>
             </div>
         </div>
