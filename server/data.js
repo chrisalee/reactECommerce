@@ -18,7 +18,6 @@ const data = {
 
     products: [
         {
-            _id: '1',
             name: 'Black Suit',
             category: 'suits',
             image: '/images/product-1.png',
@@ -30,7 +29,6 @@ const data = {
             description: 'high quality product'
         },
         {
-            _id: '2',
             name: 'Blue Suit',
             category: 'suits',
             image: '/images/product-2.png',
@@ -42,7 +40,6 @@ const data = {
             description: 'high quality product'
         },
         {
-            _id: '3',
             name: 'Black Tie',
             category: 'ties',
             image: '/images/product-3.png',
@@ -54,7 +51,6 @@ const data = {
             description: 'neck-tie'
         },
         {
-            _id: '4',
             name: 'Blue Tie',
             category: 'ties',
             image: '/images/product-4.png',
@@ -66,7 +62,6 @@ const data = {
             description: 'neck-tie'
         },
         {
-            _id: '5',
             name: 'Blue Trousers',
             category: 'pants',
             image: '/images/product-5.png',
@@ -78,7 +73,6 @@ const data = {
             description: 'comfortable'
         },
         {
-            _id: '6',
             name: 'Grey Trousers',
             category: 'pants',
             image: '/images/product-6.png',
@@ -90,7 +84,6 @@ const data = {
             description: 'comfortable'
         },
         {
-            _id: '7',
             name: 'Blue Trousers',
             category: 'shirt',
             image: '/images/product-7.png',
