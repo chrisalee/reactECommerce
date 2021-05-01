@@ -1,4 +1,8 @@
-.signinScreen__form {
+.registerScreen {
+  padding: 5rem;
+}
+
+.registerScreen__form {
   max-width: 60rem;
   margin: auto;
   background-color: #ebebeb;
@@ -8,7 +12,7 @@
   font-family: Helvetica, sans-serif;
 }
 
-.signinScreen__form > div {
+.registerScreen__form > div {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
@@ -28,7 +32,7 @@ input {
   font-family: Helvetica, sans-serif;
 }
 
-.signinScreen__button {
+.registerScreen__button {
   background-image: linear-gradient(to right, #f83600 55%, #f99523 100%);
   color: #ffffff;
   width: 100%;
@@ -40,7 +44,7 @@ input {
   font-family: Helvetica, sans-serif;
 }
 
-.signinScreen__button:hover {
+.registerScreen__button:hover {
   background-image: linear-gradient(to right, #f99523 55%, #f83600 100%);
   color: #000000;
   padding: 10px 15px;

@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
           </header>
     
           <main>
-            {/* <Route path='/register' component={RegisterScreen}/> */}
+            <Route path='/register' component={RegisterScreen}/>
             <Route path='/signin' component={SigninScreen} />
             <Route path='/cart/:id?' component={CartScreen} />
             <Route path="/product/:id" component={ProductScreen} />
