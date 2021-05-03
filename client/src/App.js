@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 
 const App = () => {
 
@@ -20,6 +20,7 @@ const App = () => {
           </header>
     
           <main>
+            <Route path='/shipping' component={ShippingAddressScreen} />
             <Route path='/register' component={RegisterScreen}/>
             <Route path='/signin' component={SigninScreen} />
             <Route path='/cart/:id?' component={CartScreen} />

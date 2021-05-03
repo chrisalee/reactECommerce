@@ -1,0 +1,12 @@
+.checkoutsteps > div {
+    border-top: 0.3rem solid #c0c0c0;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 1rem;
+}
+
+.checkoutsteps > div.active {
+    border-top: #f83600 0.3rem solid;
+    color: #f83600;
+    font-weight: bold;
+}
