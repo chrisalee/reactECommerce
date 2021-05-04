@@ -24,7 +24,8 @@ userRouter.post(
       if (bcrypt.compareSync(request.body.password, user.password)) {
         response.send({
             _id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
             isAdmin: user.isAdmin,
             token: generateToken(user),
@@ -40,14 +41,16 @@ userRouter.post(
   "/register",
   expressAsyncHandler(async (request, response) => {
     const user = new User({
-      name: request.body.name,
+      firstName: request.body.firstName,
+      lastName: request.body.lastName,
       email: request.body.email,
       password: bcrypt.hashSync(request.body.password, 8),
     });
     const createdUser = await user.save();
     response.send({
       _id: createdUser._id,
-      name: createdUser.name,
+      firstName: createdUser.firstName,
+      lastName: createdUser.lastName,
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
       token: generateToken(createdUser),

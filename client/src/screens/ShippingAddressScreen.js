@@ -23,22 +23,12 @@ const ShippingAddressScreen = (props) => {
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
 
-  // const redirect = props.location.search
-  //   ? props.location.search.split("=")[1]
-  //   : "/";
-
   const dispatch = useDispatch();
   const submitHandler = (event) => {
     event.preventDefault();
     dispatch(saveShippingAddress({ firstName, lastName, address, city, state, postalCode, country }));
     props.history.push('/payment');
   };
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     props.history.push(redirect);
-  //   }
-  // }, [props.history, redirect, userInfo]);
 
   return (
     <div className="shippingScreen">
@@ -75,7 +65,7 @@ const ShippingAddressScreen = (props) => {
           <input
             type="text"
             id="name"
-            placeholder="Last Name"
+            placeholder="Address"
             required
             onChange={(event) => setAddress(event.target.value)}
           />

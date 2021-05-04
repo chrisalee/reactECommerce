@@ -7,7 +7,8 @@ import MessageBox from "../components/MessageBox";
 import "./RegisterScreen.css";
 
 const RegisterScreen = (props) => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,7 +26,7 @@ const RegisterScreen = (props) => {
     if(password !== confirmPassword){
       alert('Password and Confirm Password do not match')
     } else{
-      dispatch(register(name, email, password));
+      dispatch(register(firstName, lastName, email, password));
     }
     
   };
@@ -45,13 +46,23 @@ const RegisterScreen = (props) => {
         {loading && <Loading />}
         {error && <MessageBox varient="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
-            id="name"
-            placeholder="Enter name"
+            id="firstName"
+            placeholder="Enter First Name"
             required
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            placeholder="Enter Last Name"
+            required
+            onChange={(event) => setLastName(event.target.value)}
           />
         </div>
         <div>

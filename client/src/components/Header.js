@@ -46,7 +46,7 @@ const Header = () => {
         {userInfo ? (
           <div className="header__signout dropdown">
             <Link to="#">
-              Hello, {userInfo.name} <i className="fa fa-caret-down"></i>{''}
+              Hello, {userInfo.firstName} <i className="fa fa-caret-down"></i>{''}
             </Link>
             <ul className='dropdown-content'>
               <li>
