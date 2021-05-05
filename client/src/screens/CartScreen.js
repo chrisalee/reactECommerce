@@ -27,11 +27,12 @@ const CartScreen = (props) => {
 
   const checkoutHandler = () => {
     //go to checkout
-    props.history.push('/signin?redirect=shipping');
+    props.history.push("/signin?redirect=shipping");
   };
 
   return (
     <div className="cartscreen row top">
+      <Link to="/">Continue Shopping</Link>
       <div className="cartScreen__col-2">
         <h1>Shopping Cart</h1>
         {error && <MessageBox variant="danger">{error}</MessageBox>}

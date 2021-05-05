@@ -1,0 +1,30 @@
+.placeOrderScreen__col-2{
+    flex: 0.6;
+    padding-top: 2rem;
+    margin: 0 auto;
+}
+
+.placeOrderScreen__col-1{
+  flex: 0.3;
+  padding-top: 2rem;
+}
+
+.placeorderScreen__button {
+  background-image: linear-gradient(to right, #f83600 55%, #f99523 100%);
+  color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 1.6rem;
+  font-family: Helvetica, sans-serif;
+}
+
+.placeorderScreen__button:hover {
+  background-image: linear-gradient(to right, #f99523 55%, #f83600 100%);
+  color: #000000;
+  padding: 10px 15px;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
