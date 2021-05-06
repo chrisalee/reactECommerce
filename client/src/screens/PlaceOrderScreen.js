@@ -1,8 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import "./PlaceOrderScreen.css";
 import CheckoutSteps from "../components/CheckoutSteps";
-import './PlaceOrderScreen.css';
+import Loading from '../components/Loading';
+import MessageBox from '../components/MessageBox';
+
 
 const PlaceOrderScreen = (props) => {
   const cart = useSelector((state) => state.cart);
@@ -10,15 +15,31 @@ const PlaceOrderScreen = (props) => {
     props.history.push("/payment");
   }
 
-  const toPrice = (num) => Number(num.toFixed(2));  //ex 5.123 => "5.12" => 5.12
-  cart.itemsPrice = toPrice(cart.cartItems.reduce((accumulator, current) => accumulator + current.quantity * current.price, 0));
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
+  const toPrice = (num) => Number(num.toFixed(2)); //ex 5.123 => "5.12" => 5.12
+  cart.itemsPrice = toPrice(
+    cart.cartItems.reduce(
+      (accumulator, current) => accumulator + current.quantity * current.price,
+      0
+    )
+  );
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.taxPrice + cart.shippingPrice + cart.itemsPrice;
 
+  const dispatch = useDispatch();
   const placeOrderHandler = () => {
-    // TOFO: dispatch(placeOrder({}))
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
+
+  useEffect(() => {
+    if (success) {
+      props.history.push(`/order/${order._id}`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [success, dispatch, order, props.history]);
 
   return (
     <div>
@@ -32,9 +53,9 @@ const PlaceOrderScreen = (props) => {
                 <p>
                   <strong>Name:</strong> {cart.shippingAddress.firstName}{" "}
                   {cart.shippingAddress.lastName}
-                  <br/>
+                  <br />
                   <strong>Address:</strong> {cart.shippingAddress.address}
-                  <br/>
+                  <br />
                   {cart.shippingAddress.city}, {cart.shippingAddress.state}{" "}
                   {cart.shippingAddress.postalCode}{" "}
                   {cart.shippingAddress.country}
@@ -84,53 +105,56 @@ const PlaceOrderScreen = (props) => {
               </div>
             </li>
           </ul>
-          
         </div>
         <div className="placeOrderScreen__col-1">
           <div className="card card-body">
-              <ul>
-                <li>
-                  <h2>Order Summary</h2>
-                </li>
-                <li>
-                  <div className="row">
-                    <div>Items</div>
-                    <div>${cart.itemsPrice.toFixed(2)}</div>
+            <ul>
+              <li>
+                <h2>Order Summary</h2>
+              </li>
+              <li>
+                <div className="row">
+                  <div>Items</div>
+                  <div>${cart.itemsPrice.toFixed(2)}</div>
+                </div>
+              </li>
+              <li>
+                <div className="row">
+                  <div>Shipping</div>
+                  <div>${cart.shippingPrice.toFixed(2)}</div>
+                </div>
+              </li>
+              <li>
+                <div className="row">
+                  <div>
+                    Taxes <small>(15%)</small>
                   </div>
-                </li>
-                <li>
-                  <div className="row">
-                    <div>Shipping</div>
-                    <div>${cart.shippingPrice.toFixed(2)}</div>
+                  <div>${cart.taxPrice.toFixed(2)}</div>
+                </div>
+              </li>
+              <hr />
+              <li>
+                <div className="row">
+                  <div>
+                    <strong>Order Total</strong>
                   </div>
-                </li>
-                <li>
-                  <div className="row">
-                    <div>Taxes <small>(15%)</small></div>
-                    <div>${cart.taxPrice.toFixed(2)}</div>
-                  </div>
-                </li>
-                <hr />
-                <li>
-                  <div className="row">
-                    <div><strong>Order Total</strong></div>
-                    <div>${cart.totalPrice.toFixed(2)}</div>
-                  </div>
-                </li>
-                <li>
-                  <button 
-                    type='button' 
-                    onClick={placeOrderHandler} 
-                    className='placeorderScreen__button'
-                    disabled={cart.cartItems.length === 0}
-                  >
-                    Place Order
-                  </button>
-                </li>
-              </ul>
+                  <div>${cart.totalPrice.toFixed(2)}</div>
+                </div>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={placeOrderHandler}
+                  className="placeorderScreen__button"
+                  disabled={cart.cartItems.length === 0}
+                >
+                  Place Order
+                </button>
+              </li>
+              {loading && <Loading />}
+              {error && <MessageBox varient="danger">{error}</MessageBox>}
+            </ul>
           </div>
-  
-
         </div>
       </div>
     </div>

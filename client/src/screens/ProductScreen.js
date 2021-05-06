@@ -84,7 +84,7 @@ const ProductScreen = (props) => {
                       </div>
                     </div>
                   </li>
-                  <li>
+                  {/* <li> */}
                     {
                       product.countInStock > 0 && (
                         <>
@@ -110,7 +110,7 @@ const ProductScreen = (props) => {
                         </>
                       )
                     }
-                  </li>
+                  {/* </li> */}
                 </ul>
               </div>
             </div>

@@ -53,7 +53,7 @@ const ShippingAddressScreen = (props) => {
             <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
-              id="name"
+              id="lastName"
               placeholder="Last Name"
               required
               onChange={(event) => setLastName(event.target.value)}
@@ -64,7 +64,7 @@ const ShippingAddressScreen = (props) => {
           <label htmlFor="address">Address</label>
           <input
             type="text"
-            id="name"
+            id="address"
             placeholder="Address"
             required
             onChange={(event) => setAddress(event.target.value)}
@@ -97,8 +97,8 @@ const ShippingAddressScreen = (props) => {
             <label htmlFor="postalCode">Postal Code</label>
             <input
               type="text"
-              id="city"
-              placeholder="City"
+              id="postalCode"
+              placeholder="Postal Code"
               required
               onChange={(event) => setPostalCode(event.target.value)}
             />

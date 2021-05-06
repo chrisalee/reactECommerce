@@ -9,7 +9,7 @@ orderRouter.post(
     '/',
     isAuth,
     expressAsyncHandler(async (request, response) => {
-        if(request.body.orders.length === 0) {
+        if(request.body.orderItems.length === 0) {
             response.status(400).send({ message: 'Cart is empty'})
         } else{
             const order = new Order({
