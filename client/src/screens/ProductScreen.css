@@ -61,7 +61,7 @@ ul {
 
 .card-body > * {
   margin-bottom: 0.5rem;
-  padding: 20px;
+  padding: 1.3rem;
 }
 
 .price {
@@ -78,7 +78,7 @@ ul {
 
 .productScreen__image {
     object-fit: contain;
-    /* height: 600px; */
+    height: 600px;
     width: 100%;
     /* margin: 30px; */
     text-align: center;
