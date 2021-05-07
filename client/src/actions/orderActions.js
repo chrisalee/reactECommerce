@@ -41,7 +41,9 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     const {userSignin: { userInfo }} = getState();
     try{
         const { data } = await Axios.get(`/api/orders/${orderId}`, {
-            headers: { Authorization: `Bearer ${userInfo.token}` }
+            headers: { 
+                Authorization: `Bearer ${userInfo.token}` 
+            }
         });
         dispatch({
             type: ORDER_DETAILS_SUCCESS, 
