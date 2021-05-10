@@ -1,12 +1,12 @@
 import React from 'react';
-import spinner from './loading.gif';
 import './Loading.css';
+import { Icon } from '@iconify/react';
+import loadingaltIcon from '@iconify-icons/whh/loadingalt';
 
 const Loading = () => {
     return (
         <div className='loading'>
-            <img src={spinner} alt='Loading' className='loading__gif' />
-            <h1 className='loading__text'>Loading...</h1>
+            <Icon icon={loadingaltIcon} />  Loading...
         </div>
     )
 }

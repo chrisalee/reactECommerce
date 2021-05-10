@@ -29,6 +29,8 @@
     "react-paypal-button-v2": "^2.6.3"
   },
   "devDependencies": {
+    "@iconify-icons/whh": "^1.1.0",
+    "@iconify/react": "^1.1.4",
     "eslint": "^7.25.0"
   }
 }

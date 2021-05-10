@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL} from '../constants/orderConstants';
+import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAYMENT_REQUEST, ORDER_PAYMENT_SUCCESS, ORDER_PAYMENT_FAIL, } from '../constants/orderConstants';
 import { CART_EMPTY } from '../constants/cartConstants';
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -9,7 +9,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     });
     try {
         const { userSignin: { userInfo } } = getState();
-        const { data } = await Axios.post(`/api/orders/`, order, {
+        const { data } = await Axios.post(`/api/orders`, order, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             }
@@ -48,7 +48,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
         dispatch({
             type: ORDER_DETAILS_SUCCESS, 
             payload: data
-        })
+        });
     } catch(error) {
         const message = 
             error.response && error.response.data.message
@@ -57,7 +57,34 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
             dispatch({ 
                 type: ORDER_DETAILS_FAIL,
                 payload: message
-            })
+            });
     }
-}
+};
+
+export const payOrder = (order, paymentResult) => async (dispatch, getState) => {
+    dispatch({
+        type: ORDER_PAYMENT_REQUEST,
+        payload: { order, paymentResult }
+    });
+    const { userSignin: { userInfo } } = getState();
+
+    try{
+        const { data } = Axios.put(`/api/orders/${order._id}`, paymentResult, {
+            headers: { Authorixation: `Bearer ${userInfo.token}`},
+        });
+        dispatch({
+            type: ORDER_PAYMENT_SUCCESS, 
+            payload: data
+        });
+    } catch(error) {
+        const message =
+            error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+            dispatch({ 
+                type: ORDER_PAYMENT_FAIL,
+                payload: message
+            });
+    }
+};
 
