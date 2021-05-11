@@ -15,8 +15,9 @@ const OrderDetailsScreen = (props) => {
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector(state => state.orderDetails);
   const { order, loading, error } = orderDetails;
+  
   const orderPayment = useSelector(state => state.orderPayment);
-  const { loading: loadingPay, error: errorPay, success: successPay } = orderPayment;
+  const { loading: loadingPayment, error: errorPayment, success: successPayment } = orderPayment;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const OrderDetailsScreen = (props) => {
       };
       document.body.appendChild(script);
     };
-    if(!order || successPay || (order && order._id !== orderId)) {
+    if(!order || successPayment || (order && order._id !== orderId)) {
       dispatch({ type: ORDER_PAYMENT_RESET });
       dispatch(detailsOrder(orderId));
     } else {
@@ -43,7 +44,7 @@ const OrderDetailsScreen = (props) => {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady, successPay]);
+  }, [dispatch, order, orderId, sdkReady, successPayment]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(paymentOrder(order, paymentResult))
@@ -164,8 +165,8 @@ const OrderDetailsScreen = (props) => {
                     {!sdkReady ? (<Loading />) : 
                     (
                       <>
-                      {errorPay && <MessageBox varient='danger'>{errorPay}</MessageBox>}
-                      {loadingPay && <Loading  />}
+                      {errorPayment && <MessageBox varient='danger'>{errorPayment}</MessageBox>}
+                      {loadingPayment && <Loading  />}
                       <PayPalButton 
                         amount = {order.totalPrice}
                         onSuccess = {successPaymentHandler}

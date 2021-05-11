@@ -46,7 +46,7 @@ orderRouter.get(
 );
 
 orderRouter.put(
-  "/:id/pay",
+  "/:id/payment",
   isAuth,
   expressAsyncHandler(async (request, response) => {
     const order = await Order.findById(request.params.id);

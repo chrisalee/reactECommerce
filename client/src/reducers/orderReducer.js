@@ -33,7 +33,7 @@ export const orderCreateReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
 
 export const orderDetailsReducer = (state = {loading: true}, action) => {
     switch(action.type) {
@@ -53,7 +53,7 @@ export const orderDetailsReducer = (state = {loading: true}, action) => {
         default:
             return state;
     }
-}
+};
 
 export const orderPaymentReducer = (state = {}, action) => {
     switch(action.type) {
@@ -75,4 +75,4 @@ export const orderPaymentReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};

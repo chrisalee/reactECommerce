@@ -13,7 +13,6 @@
   padding-top: 2rem;
 }
 
-.alert-success {
-    color: #20a020;
-    background-color: #eeffe0;
+.orderdetailsScreen__loading {
+    padding-top: 1rem;
 }
