@@ -13,6 +13,7 @@
   padding-top: 2rem;
 }
 
-/* .orderdetailsScreen__loading {
-    max-width: 200px;
-} */
+.alert-success {
+    color: #20a020;
+    background-color: #eeffe0;
+}

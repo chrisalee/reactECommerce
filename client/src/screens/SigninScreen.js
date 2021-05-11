@@ -11,7 +11,7 @@ const SigninScreen = (props) => {
   const [password, setPassword] = useState("");
 
   const redirect = props.location.search
-    ? props.location.search.split("=")[1]
+    ? props.location.search.split("=")[1] 
     : "/";
 
   const userSignin = useSelector((state) => state.userSignin);

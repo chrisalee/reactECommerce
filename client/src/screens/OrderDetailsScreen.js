@@ -2,20 +2,21 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { detailsOrder, payOrder } from "../actions/orderActions";
+import { detailsOrder, paymentOrder } from "../actions/orderActions";
 import Loading from "../components/Loading";
 import MessageBox from "../components/MessageBox";
 import './OrderDetailsScreen.css';
 import { PayPalButton } from 'react-paypal-button-v2';
+import { ORDER_PAYMENT_RESET } from "../constants/orderConstants";
 
 const OrderDetailsScreen = (props) => {
 
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector(state => state.orderDetails);
-  const { order, loading, error, paymentResult } = orderDetails;
-  const orderPay = useSelector(state => state.orderPay);
-  const { loading: loadingPay, error: errorPay, success: successPay } = orderPay;
+  const { order, loading, error } = orderDetails;
+  const orderPayment = useSelector(state => state.orderPayment);
+  const { loading: loadingPay, error: errorPay, success: successPay } = orderPayment;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const OrderDetailsScreen = (props) => {
       document.body.appendChild(script);
     };
     if(!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAYMENT_RESET });
       dispatch(detailsOrder(orderId));
     } else {
       if(!order.isPaid){
@@ -43,8 +45,8 @@ const OrderDetailsScreen = (props) => {
     }
   }, [dispatch, order, orderId, sdkReady, successPay]);
 
-  const successPaymentHandler = () => {
-    dispatch(payOrder(order, paymentResult))
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(paymentOrder(order, paymentResult))
   }
 
   return loading ? (<Loading />) : error ? (<MessageBox varient='danger'>{error}</MessageBox>) :

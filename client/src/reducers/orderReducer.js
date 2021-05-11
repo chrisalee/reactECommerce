@@ -55,7 +55,7 @@ export const orderDetailsReducer = (state = {loading: true}, action) => {
     }
 }
 
-export const orderPayReducer = (state = {}, action) => {
+export const orderPaymentReducer = (state = {}, action) => {
     switch(action.type) {
 
         case ORDER_PAYMENT_REQUEST:

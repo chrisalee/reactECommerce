@@ -15,7 +15,7 @@ const Header = () => {
 
   const dispatch = useDispatch()
   const signoutHandler = () => {
-    dispatch(signout())
+    dispatch(signout());
   };
 
   return (
@@ -50,7 +50,7 @@ const Header = () => {
             </Link>
             <ul className='dropdown-content'>
               <li>
-                <Link to='#signout' onClick={signoutHandler}>Sign Out</Link>
+                <Link to='/' onClick={signoutHandler}>Sign Out</Link>
               </li>
               <li className='dropdown__cartItems'>
                 <Link to='/cart'>View Your Cart ({cartItems.length})</Link>
