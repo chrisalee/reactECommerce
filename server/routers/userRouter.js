@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request, response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import User from "../models/userModel.js";
@@ -23,12 +23,12 @@ userRouter.post(
     if (user) {
       if (bcrypt.compareSync(request.body.password, user.password)) {
         response.send({
-            _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            token: generateToken(user),
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(user),
         });
         return;
       }
@@ -56,6 +56,18 @@ userRouter.post(
       token: generateToken(createdUser),
     });
   })
-)
+);
+
+userRouter.get(
+  "/:id",
+  expressAsyncHandler(async (request, response) => {
+    const user = await User.findById(request.params.id);
+    if (user) {
+      response.send(user);
+    } else {
+      response.status(404).send({ message: "User not found." });
+    }
+  })
+);
 
 export default userRouter;

@@ -58,6 +58,9 @@ const Header = () => {
               <li className='dropdown__cartItems'>
                 <Link to='/orderHistory'>Your Order History</Link>
               </li>
+              <li className='dropdown__cartItems'>
+                <Link to='/userProfile'>Edit Your Profile</Link>
+              </li>
             </ul>
             
           </div>

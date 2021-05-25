@@ -1,0 +1,49 @@
+.userProfileScreen__form {
+    max-width: 60rem;
+    margin: auto;
+    background-color: #ebebeb;
+    border: 0.1rem solid #cecece;
+    border-radius: 0.3rem;
+    padding: 1rem 3.5rem;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .userProfileScreen__form > div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  
+  label {
+    margin: 1rem 0;
+    display: block;
+  }
+  
+  input {
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 0.1rem solid #cecece;
+    border-radius: 0.3rem;
+    border-radius: 0.2rem;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .userProfileScreen__button {
+    background-image: linear-gradient(to right, #f83600 55%, #f99523 100%);
+    color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 1.6rem;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  .userProfileScreen__button:hover {
+    background-image: linear-gradient(to right, #f99523 55%, #f83600 100%);
+    color: #000000;
+    padding: 10px 15px;
+    border: 1px solid #000000;
+    cursor: pointer;
+  }
