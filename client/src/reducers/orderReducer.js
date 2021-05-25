@@ -9,7 +9,10 @@ import {
     ORDER_PAYMENT_FAIL, 
     ORDER_PAYMENT_SUCCESS, 
     ORDER_PAYMENT_REQUEST, 
-    ORDER_PAYMENT_RESET } from "../constants/orderConstants";
+    ORDER_PAYMENT_RESET, 
+    ORDER_HISTORY_LIST_REQUEST,
+    ORDER_HISTORY_LIST_SUCCESS,
+    ORDER_HISTORY_LIST_FAIL} from "../constants/orderConstants";
 
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -76,3 +79,23 @@ export const orderPaymentReducer = (state = {}, action) => {
             return state;
     }
 };
+
+export const orderHistoryReducer = (state = { orders: [] }, action) => {
+    switch(action.type) {
+
+        case ORDER_HISTORY_LIST_REQUEST:
+            return {loading: true};
+        case ORDER_HISTORY_LIST_SUCCESS:
+            return {
+                loading: false, 
+                orders: action.payload
+            };
+        case ORDER_HISTORY_LIST_FAIL:
+            return {
+                loading: false, 
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+}

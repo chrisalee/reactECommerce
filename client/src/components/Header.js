@@ -55,6 +55,9 @@ const Header = () => {
               <li className='dropdown__cartItems'>
                 <Link to='/cart'>View Your Cart ({cartItems.length})</Link>
               </li>
+              <li className='dropdown__cartItems'>
+                <Link to='/orderHistory'>Your Order History</Link>
+              </li>
             </ul>
             
           </div>

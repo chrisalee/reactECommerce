@@ -29,8 +29,8 @@ app.get("/", (request, response) => {
   response.send(`Server is ready`);
 });
 
-app.use((err, request, response, next) => {
-  response.status(500).send({ message: err.message });
+app.use((error, request, response, next) => {
+  response.status(500).send({ message: error.message });
 });
 
 app.listen(port, () => {

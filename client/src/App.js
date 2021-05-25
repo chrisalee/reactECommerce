@@ -11,9 +11,10 @@ import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderDetailsScreen from "./screens/OrderDetailsScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 
 const App = () => {
-
+  console.log('react test .env number: ', process.env.REACT_APP_TEST);
   return (
     <BrowserRouter>
       <div className="app">
@@ -23,6 +24,7 @@ const App = () => {
           </header>
     
           <main>
+            <Route path='/orderHistory' component={OrderHistoryScreen} />
             <Route path='/order/:id' component={OrderDetailsScreen} />
             <Route path='/placeorder' component={PlaceOrderScreen} />
             <Route path='/payment' component={PaymentMethodScreen} />

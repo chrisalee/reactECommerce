@@ -27,7 +27,7 @@ const PlaceOrderScreen = (props) => {
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  cart.totalPrice = cart.taxPrice + cart.shippingPrice + cart.itemsPrice;
+  cart.totalPrice = cart.itemsPrice + cart.taxPrice + cart.shippingPrice;
 
   const dispatch = useDispatch();
   const placeOrderHandler = () => {

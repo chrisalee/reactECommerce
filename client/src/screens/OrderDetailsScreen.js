@@ -20,6 +20,8 @@ const OrderDetailsScreen = (props) => {
   const { loading: loadingPayment, error: errorPayment, success: successPayment } = orderPayment;
   const dispatch = useDispatch();
 
+  
+
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
@@ -30,6 +32,7 @@ const OrderDetailsScreen = (props) => {
       script.onload = () => {
         setSdkReady(true);
       };
+      console.log(data);
       document.body.appendChild(script);
     };
     if(!order || successPayment || (order && order._id !== orderId)) {

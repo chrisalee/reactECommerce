@@ -31,101 +31,103 @@ const CartScreen = (props) => {
   };
 
   return (
-    <div className="cartscreen row top">
+    <div>
       <Link to="/">Continue Shopping</Link>
-      <div className="cartScreen__col-2">
-        <h1>Shopping Cart</h1>
-        {error && <MessageBox variant="danger">{error}</MessageBox>}
-        {cartItems.length === 0 ? (
-          <MessageBox>
-            Cart is empty
-            <Link to="/">Go Shopping</Link>
-          </MessageBox>
-        ) : (
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.product}>
-                <div className="row">
-                  <div>
-                    <img
-                      className="cartScreen__image"
-                      src={item.image}
-                      alt={item.name}
-                    />
+      <div className="cartscreen row top">
+        <div className="cartScreen__col-2">
+          <h1>Shopping Cart</h1>
+          {error && <MessageBox variant="danger">{error}</MessageBox>}
+          {cartItems.length === 0 ? (
+            <MessageBox>
+              Cart is empty
+              <Link to="/">Go Shopping</Link>
+            </MessageBox>
+          ) : (
+            <ul>
+              {cartItems.map((item) => (
+                <li key={item.product}>
+                  <div className="row">
+                    <div>
+                      <img
+                        className="cartScreen__image"
+                        src={item.image}
+                        alt={item.name}
+                      />
+                    </div>
+                    <div>
+                      <Link
+                        to={`/product/${item.product}`}
+                        className="cartScreen__name"
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+                    <div>
+                      <select
+                        value={item.quantity}
+                        onChange={(event) =>
+                          dispatch(
+                            addToCart(item.product, Number(event.target.value))
+                          )
+                        }
+                      >
+                        {[...Array(item.countInStock).keys()].map((qty) => (
+                          <option key={qty + 1} value={qty + 1}>
+                            {qty + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <p>${item.price}</p>
+                    </div>
+                    <div>
+                      <button
+                        className="cartScreen__button"
+                        type="button"
+                        onClick={() => removeFromCartHandler(item.product)}
+                      >
+                        Remove From Cart
+                      </button>
+                    </div>
                   </div>
-                  <div>
-                    <Link
-                      to={`/product/${item.product}`}
-                      className="cartScreen__name"
-                    >
-                      {item.name}
-                    </Link>
-                  </div>
-                  <div>
-                    <select
-                      value={item.quantity}
-                      onChange={(event) =>
-                        dispatch(
-                          addToCart(item.product, Number(event.target.value))
-                        )
-                      }
-                    >
-                      {[...Array(item.countInStock).keys()].map((qty) => (
-                        <option key={qty + 1} value={qty + 1}>
-                          {qty + 1}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <p>${item.price}</p>
-                  </div>
-                  <div>
-                    <button
-                      className="cartScreen__button"
-                      type="button"
-                      onClick={() => removeFromCartHandler(item.product)}
-                    >
-                      Remove From Cart
-                    </button>
-                  </div>
-                </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+                        
+        <div className="cartScreen__cardCol-1">
+          <div className="cartScreen__card">
+            <ul>
+              <li>
+                <h2>
+                  Subtotal (
+                  {cartItems?.reduce(
+                    (accumulator, currentItem) =>
+                      accumulator + currentItem.quantity,
+                    0
+                  )}{" "}
+                  items) : $
+                  {cartItems?.reduce(
+                    (accumulator, currentItem) =>
+                      accumulator + currentItem.price * currentItem.quantity,
+                    0
+                  )}
+                </h2>
               </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      <div className="cartScreen__cardCol-1">
-        <div className="cartScreen__card">
-          <ul>
-            <li>
-              <h2>
-                Subtotal (
-                {cartItems?.reduce(
-                  (accumulator, currentItem) =>
-                    accumulator + currentItem.quantity,
-                  0
-                )}{" "}
-                items) : $
-                {cartItems?.reduce(
-                  (accumulator, currentItem) =>
-                    accumulator + currentItem.price * currentItem.quantity,
-                  0
-                )}
-              </h2>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={checkoutHandler}
-                className="cartScreen__checkoutButton"
-                disabled={cartItems.length === 0}
-              >
-                Proceed To Checkout
-              </button>
-            </li>
-          </ul>
+              <li>
+                <button
+                  type="button"
+                  onClick={checkoutHandler}
+                  className="cartScreen__checkoutButton"
+                  disabled={cartItems.length === 0}
+                >
+                  Proceed To Checkout
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
