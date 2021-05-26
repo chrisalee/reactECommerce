@@ -1,3 +1,7 @@
+.orderdetailsScreen {
+    height: 800px;
+}
+
 .orderdetailsScreen__cardTitle {
     margin: 1rem;
 }
