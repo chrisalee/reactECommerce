@@ -13,6 +13,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderDetailsScreen from "./screens/OrderDetailsScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import UserProfileScreen from "./screens/UserProfileScreen";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   console.log('react test .env number: ', process.env.REACT_APP_TEST);
@@ -25,7 +26,7 @@ const App = () => {
           </header>
     
           <main>
-            <Route path='/userProfile' component={UserProfileScreen} />
+            <PrivateRoute path='/userProfile' component={UserProfileScreen} />
             <Route path='/orderHistory' component={OrderHistoryScreen} />
             <Route path='/order/:id' component={OrderDetailsScreen} />
             <Route path='/placeorder' component={PlaceOrderScreen} />

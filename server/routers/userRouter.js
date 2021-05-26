@@ -3,7 +3,7 @@ import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import User from "../models/userModel.js";
 import data from "../data.js";
-import { generateToken } from "../utils.js";
+import { generateToken, isAuth } from "../utils.js";
 
 const userRouter = express.Router();
 
@@ -69,5 +69,30 @@ userRouter.get(
     }
   })
 );
+
+userRouter.put(
+  '/profile',
+  isAuth,
+  expressAsyncHandler(async (request, response) => {
+    const user = await User.findById(request.user._id);
+    if(user){
+      user.firstName = request.body.firstName || user.firstName;
+      user.lastName = request.body.lastName || user.lastName;
+      user.email = request.body.email || user.email;
+      if(request.body.password) {
+        user.password = bcrypt.hashSync(request.body.password, 8)
+      }
+      const updatedUser = await user.save();
+      response.send({
+        _id: updatedUser._id,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      })
+    }
+  })
+)
 
 export default userRouter;
